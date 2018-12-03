@@ -17,8 +17,12 @@ int main(int argc, char const *argv[])
     void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos);
     void cadastrarAluno(struct alunos t[],int *numeroDeAlunos);
     void verAlunos(struct alunos t[],int *numeroDeAlunos);
-    void zerarVariaveis(struct alunos t[]);
+    void buscarAluno(struct alunos t[]);
+   
+    void zerarVariaveis(struct alunos t[]); 
     void limparPosicao(struct alunos t[],int posicao);
+    void mostraPosicao(struct alunos t[],int posicao);
+
     //Declaração de variáveis
     int numeroDeAlunos = 0;
     int operacao;
@@ -39,20 +43,32 @@ int main(int argc, char const *argv[])
 void limparPosicao(struct alunos t[],int posicao){
     t[posicao].id = 0;
     strcpy(t[posicao].nome," ");
-}   
+}
+void mostraPosicao(struct alunos t[],int posicao){
+    printf("Id:%d",t[posicao].id);
+    printf("\n");
+    printf("Nome:%s",t[posicao].nome);
+    printf("\n");
+    
+}
 void zerarVariaveis(struct alunos t[]){
     for(int i = 0;i < maxAlunos;i++ )
     {
         limparPosicao(t,i);
     }
 }
+void buscarAluno(struct alunos t[]){
+    int id;
+    printf("Digite o id:");
+    scanf("%d",&id);
+    mostraPosicao(t,id);
+    system("pause");
+
+}
 void verAlunos(struct alunos t[],int *numeroDeAlunos){
     for(int i = 0; i < *numeroDeAlunos;i++)
     {
-        printf("Id:%d",t[i].id);
-        printf("\n");
-        printf("Nome:%s",t[i].nome);
-        printf("\n");
+      mostraPosicao(t,i);
     }
     system("pause");
 }
@@ -60,7 +76,7 @@ void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){
     if(*numeroDeAlunos < maxAlunos)
     {
         fflush(stdin);
-        t[*numeroDeAlunos].id = *numeroDeAlunos+1;
+        t[*numeroDeAlunos].id = *numeroDeAlunos;
         printf("Digite o nome:");
         gets(t[*numeroDeAlunos].nome);
         *numeroDeAlunos+=1;
@@ -74,6 +90,7 @@ void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){
 void menu(){
     puts("1 - Cadastrar aluno");
     puts("2 - Ver alunos cadastrados");
+    puts("3 - Buscar aluno");
 }
 void lerOperecao(int *operacao){
     int op;
@@ -92,6 +109,9 @@ void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos){
         case 2:
             printf("--Lista de Alunos--\n");
             verAlunos(t,numeroDeAlunos);
+            break;
+        case 3:
+            buscarAluno(t);
             break;
     }
 }
