@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
     //Declaração de funções 
     void menu();
     void lerOperecao(int *operacao);
-    void verificarOperacao(int *operacao);
+    void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos);
     void cadastrarAluno(struct alunos t[],int *numeroDeAlunos);
     void zerarVariaveis(struct alunos t[]);
 
@@ -23,22 +23,11 @@ int main(int argc, char const *argv[])
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
     zerarVariaveis(aluno);
-    
     do{ 
         printf("\t\tAlunos cadastrados:%d\n",numeroDeAlunos);
         menu();
         lerOperecao(pOp);
-        switch(*pOp)
-        {
-            case 1:
-                printf("--Cadastras Alunos--\n");
-                cadastrarAluno(aluno,pNumAlunos);                
-                break;
-            case 2:
-                printf("AINDA SEM FUNÇÃO\nCHAMADO 05");
-                break;
-        }
-
+        verificarOperacao(pOp,aluno,pNumAlunos);
         for(int i=0;i < maxAlunos;i++){
                 printf("--alunos cadastrados--\n");
                 printf("Id:%d\n",aluno[i].id);
@@ -76,6 +65,16 @@ void lerOperecao(int *operacao){
     scanf("%d",&op);
     *operacao=op;
 }
-void verificarOperacao(int *operacao){
+void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos){
     printf("Operacao = %d",*operacao);
+    switch(*operacao)
+    {
+        case 1:
+            printf("--Cadastras Alunos--\n");
+            cadastrarAluno(t,numeroDeAlunos);              
+            break;
+        case 2:
+            printf("AINDA SEM FUNÇÃO\nCHAMADO 05");
+            break;
+    }
 }
