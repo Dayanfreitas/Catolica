@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #define maxAlunos 4
@@ -17,16 +18,17 @@ int main(int argc, char const *argv[])
     void cadastrarAluno(struct alunos t[],int *numeroDeAlunos);
     void verAlunos(struct alunos t[],int *numeroDeAlunos);
     void zerarVariaveis(struct alunos t[]);
-    
+    void limparPosicao(struct alunos t[],int posicao);
+    //Declaração de variáveis
     int numeroDeAlunos = 0;
     int operacao;
     int *pOp,*pNumAlunos;
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
+    
     zerarVariaveis(aluno);
-
     do{ 
-        printf("\t\tAlunos cadastrados:%d\n",numeroDeAlunos);
+        printf("\tAlunos cadastrados:%d\n",numeroDeAlunos);
         menu();
         lerOperecao(pOp);
         verificarOperacao(pOp,aluno,pNumAlunos);
@@ -35,11 +37,14 @@ int main(int argc, char const *argv[])
   
 }
 //Funções
+ void limparPosicao(struct alunos t[],int posicao){
+    t[posicao].id = 0;
+    strcpy(t[posicao].nome," ");
+ }   
 void zerarVariaveis(struct alunos t[]){
     for(int i = 0;i < maxAlunos;i++ )
     {
-        t[i].id = 0;
-        strcpy(t[i].nome," ");
+        limparPosicao(t,i);
     }
 }
 void verAlunos(struct alunos t[],int *numeroDeAlunos){
@@ -52,14 +57,14 @@ void verAlunos(struct alunos t[],int *numeroDeAlunos){
     }
 }
 void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){ 
-    if(*numeroDeAlunos < maxAlunos){
+    if(*numeroDeAlunos < maxAlunos)
+    {
         fflush(stdin);
         t[*numeroDeAlunos].id = *numeroDeAlunos+1;
         printf("Digite o nome:");
         gets(t[*numeroDeAlunos].nome);
         *numeroDeAlunos+=1;
     }
-
 }
 void menu(){
     puts("1 - Cadastrar aluno");
