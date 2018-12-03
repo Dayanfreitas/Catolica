@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #define maxAlunos 4
 struct alunos{
     int id;
@@ -14,13 +15,15 @@ int main(int argc, char const *argv[])
     void lerOperecao(int *operacao);
     void verificarOperacao(int *operacao);
     void cadastrarAluno(struct alunos t[],int *numeroDeAlunos);
+    void zerarVariaveis(struct alunos t[]);
 
     int numeroDeAlunos = 0;
     int operacao;
     int *pOp,*pNumAlunos;
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
-
+    zerarVariaveis(aluno);
+    
     do{ 
         printf("\t\tAlunos cadastrados:%d\n",numeroDeAlunos);
         menu();
@@ -45,7 +48,14 @@ int main(int argc, char const *argv[])
     return 0;
   
 }
-//Funções 
+//Funções
+void zerarVariaveis(struct alunos t[]){
+    for(int i = 0;i < maxAlunos;i++ )
+    {
+        t[i].id = 0;
+        strcpy(t[i].nome," ");
+    }
+}
 void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){ 
     if(*numeroDeAlunos < maxAlunos){
         fflush(stdin);
