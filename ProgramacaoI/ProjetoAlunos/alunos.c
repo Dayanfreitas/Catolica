@@ -25,22 +25,21 @@ int main(int argc, char const *argv[])
     int *pOp,*pNumAlunos;
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
-    
     zerarVariaveis(aluno);
     do{ 
+        system("cls");
         printf("\tAlunos cadastrados:%d\n",numeroDeAlunos);
         menu();
         lerOperecao(pOp);
         verificarOperacao(pOp,aluno,pNumAlunos);
     }while(*pOp != 0);
-    return 0;
-  
+    return 0; 
 }
 //Funções
- void limparPosicao(struct alunos t[],int posicao){
+void limparPosicao(struct alunos t[],int posicao){
     t[posicao].id = 0;
     strcpy(t[posicao].nome," ");
- }   
+}   
 void zerarVariaveis(struct alunos t[]){
     for(int i = 0;i < maxAlunos;i++ )
     {
@@ -55,6 +54,7 @@ void verAlunos(struct alunos t[],int *numeroDeAlunos){
         printf("Nome:%s",t[i].nome);
         printf("\n");
     }
+    system("pause");
 }
 void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){ 
     if(*numeroDeAlunos < maxAlunos)
@@ -64,6 +64,11 @@ void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){
         printf("Digite o nome:");
         gets(t[*numeroDeAlunos].nome);
         *numeroDeAlunos+=1;
+    }else if(*numeroDeAlunos >= maxAlunos)
+    {
+        printf("\n");
+        printf("SALA CHEIA!");
+        system("pause");
     }
 }
 void menu(){
