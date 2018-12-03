@@ -15,24 +15,21 @@ int main(int argc, char const *argv[])
     void lerOperecao(int *operacao);
     void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos);
     void cadastrarAluno(struct alunos t[],int *numeroDeAlunos);
+    void verAlunos(struct alunos t[],int *numeroDeAlunos);
     void zerarVariaveis(struct alunos t[]);
-
+    
     int numeroDeAlunos = 0;
     int operacao;
     int *pOp,*pNumAlunos;
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
     zerarVariaveis(aluno);
+
     do{ 
         printf("\t\tAlunos cadastrados:%d\n",numeroDeAlunos);
         menu();
         lerOperecao(pOp);
         verificarOperacao(pOp,aluno,pNumAlunos);
-        for(int i=0;i < maxAlunos;i++){
-                printf("--alunos cadastrados--\n");
-                printf("Id:%d\n",aluno[i].id);
-                printf("Nome:%s\n",aluno[i].nome);
-        }
     }while(*pOp != 0);
     return 0;
   
@@ -43,6 +40,15 @@ void zerarVariaveis(struct alunos t[]){
     {
         t[i].id = 0;
         strcpy(t[i].nome," ");
+    }
+}
+void verAlunos(struct alunos t[],int *numeroDeAlunos){
+    for(int i = 0; i < *numeroDeAlunos;i++)
+    {
+        printf("Id:%d",t[i].id);
+        printf("\n");
+        printf("Nome:%s",t[i].nome);
+        printf("\n");
     }
 }
 void cadastrarAluno(struct alunos t[],int *numeroDeAlunos){ 
@@ -66,7 +72,7 @@ void lerOperecao(int *operacao){
     *operacao=op;
 }
 void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos){
-    printf("Operacao = %d",*operacao);
+    printf("Operacao = %d\n",*operacao);
     switch(*operacao)
     {
         case 1:
@@ -74,7 +80,8 @@ void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos){
             cadastrarAluno(t,numeroDeAlunos);              
             break;
         case 2:
-            printf("AINDA SEM FUNÇÃO\nCHAMADO 05");
+            printf("--Lista de Alunos--\n");
+            verAlunos(t,numeroDeAlunos);
             break;
     }
 }
