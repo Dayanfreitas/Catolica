@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     int *pOp,*pNumAlunos;
     pOp = &operacao;
     pNumAlunos = &numeroDeAlunos;
-    zerarVariaveis(aluno,maxAlunos);
+    allNotExists(aluno,maxAlunos);
     do{ 
         limpar();
         mostrarQuantidadeAlunos(*pNumAlunos);

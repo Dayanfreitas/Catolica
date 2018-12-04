@@ -6,12 +6,12 @@ struct alunos{
     int id;
     char nome[20];
 };
-int existsStudent(struct alunos t[],int id);
 
 void lerOperecao(int *operacao);
-void limparPosicao(struct alunos t[],int posicao);
+void NotExists(struct alunos t[],int posicao);
+int  existsStudent(struct alunos t[],int id);
 void mostraPosicao(struct alunos t[],int posicao,int respostaExists);
-void zerarVariaveis(struct alunos t[],int quantidade); 
+void allNotExists(struct alunos t[],int quantidade); 
 
 void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos,int maxAlunos);
 void cadastrarAluno(struct alunos t[],int *numeroDeAlunos,int maxAlunos);
@@ -27,14 +27,13 @@ int existsStudent(struct alunos t[],int id){
         return 1;
     }
 }
-
 void lerOperecao(int *operacao){
     int op;
     printf("Digite sua operacao(0 - para sair ):");
     scanf("%d",&op);
     *operacao=op;
 }
-void limparPosicao(struct alunos t[],int posicao){
+void NotExists(struct alunos t[],int posicao){
     t[posicao].id = -1;
     strcpy(t[posicao].nome," ");
 }
@@ -51,10 +50,10 @@ void mostraPosicao(struct alunos t[],int posicao,int respostaExists){
     }
 }
 
-void zerarVariaveis(struct alunos t[],int quantidade){
+void allNotExists(struct alunos t[],int quantidade){
     for(int i = 0;i < quantidade;i++ )
     {
-        limparPosicao(t,i);
+       NotExists(t,i);
     }
 }
 
