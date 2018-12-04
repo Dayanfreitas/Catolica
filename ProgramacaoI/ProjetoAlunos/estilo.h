@@ -27,7 +27,7 @@ void erroDeAluno(int numeroDeAluno){
     if(numeroDeAluno == 0)
     {
         printf("\n");
-        printf("Nenhum Aluno Cadastrado\n");
+        printf("Unregistered students\n");
     }
     else if(numeroDeAluno == 4)
     {

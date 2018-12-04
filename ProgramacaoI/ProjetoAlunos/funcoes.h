@@ -59,17 +59,12 @@ void zerarVariaveis(struct alunos t[],int quantidade){
 }
 
 void verAlunos(struct alunos t[],int *numeroDeAlunos){
-    if(*numeroDeAlunos > 0)
-    { 
-        for(int i = 0; i < *numeroDeAlunos;i++)
+    if(*numeroDeAlunos == 0)
+        erroDeAluno(*numeroDeAlunos);
+    for(int i = 0; i < *numeroDeAlunos;i++)
         {
         mostraPosicao(t,i,existsStudent(t,i));
         }
-    }
-    else if(*numeroDeAlunos == 0)
-    {
-        erroDeAluno(*numeroDeAlunos);
-    }
     pause();
 }
 
@@ -78,7 +73,7 @@ void buscarAluno(struct alunos t[],int maxAlunos){
     do{
         printf("Digite o id:");
         scanf("%d",&id);
-    }while(id > maxAlunos);
+    }while(id >= maxAlunos);
     mostraPosicao(t,id,existsStudent(t,id));
     pause();
 }
