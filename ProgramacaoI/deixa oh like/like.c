@@ -6,21 +6,25 @@ int main(int argc, char const *argv[])
     char deixaOlike[] = "deixa o like aqui";
     int tamanhoString;
     int linha = 0;
+    int letra = 0;
     tamanhoString = strlen(deixaOlike);
-    for(int letra = 0;letra<=tamanhoString;letra++){
-        for(linha=0;linha < letra;linha++){
-            printf("%c",deixaOlike[linha]);
+    for(linha=0;linha <= tamanhoString;linha++)
+    {
+        for(letra; letra < linha;letra++)
+        {
+            printf("%c",deixaOlike[letra]);
         }
         printf("\n");
-        linha=0;
+        letra=0;
     }
-    for(int letra = 0;letra<=tamanhoString;){
-        for(linha = 0; linha < tamanhoString;linha++){
-            printf("%c",deixaOlike[linha]);
+    for(linha = tamanhoString;linha >=0;linha--)
+    {
+        for(letra = 0;letra < tamanhoString;letra++)
+        {
+            printf("%c",deixaOlike[letra]);
         }
         printf("\n");
         tamanhoString--;
-    }  
-
+    }
     return 0;
 }
