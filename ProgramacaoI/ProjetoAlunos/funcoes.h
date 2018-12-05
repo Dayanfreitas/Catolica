@@ -9,12 +9,13 @@ struct alunos{
 
 void lerOperecao(int *operacao);
 void NotExists(struct alunos t[],int posicao);
+int  diponivelPlace(int *numeroDeAlunos,int maxAlunos);
 int  existsStudent(struct alunos t[],int id);
 void mostraPosicao(struct alunos t[],int posicao,int respostaExists);
 void allNotExists(struct alunos t[],int quantidade); 
 
 void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos,int maxAlunos);
-void cadastrarAluno(struct alunos t[],int *numeroDeAlunos,int maxAlunos);
+void cadastrarAluno(struct alunos t[],int *numeroDeAlunos,int respostaDiponivel);
 void verAlunos(struct alunos t[],int *numeroDeAlunos);
 void buscarAluno(struct alunos t[],int maxAlunos);   
 
@@ -76,20 +77,23 @@ void buscarAluno(struct alunos t[],int maxAlunos){
     mostraPosicao(t,id,existsStudent(t,id));
     pause();
 }
-void cadastrarAluno(struct alunos t[],int *numeroDeAlunos,int maxAlunos){ 
+int diponivelPlace(int *numeroDeAlunos,int maxAlunos){
     if(*numeroDeAlunos < maxAlunos)
+        return 0;
+    else
+        erroDeAluno(maxAlunos);
+        pause();
+        return 1;
+}
+void cadastrarAluno(struct alunos t[],int *numeroDeAlunos,int respostaDiponivel){ 
+    if(respostaDiponivel == 0)
     {
         fflush(stdin);
         t[*numeroDeAlunos].id = *numeroDeAlunos;
         printf("Digite o nome:");
         gets(t[*numeroDeAlunos].nome);
         *numeroDeAlunos+=1;
-    }
-    else if(*numeroDeAlunos >= maxAlunos)
-    {
-        erroDeAluno(*numeroDeAlunos);
-        pause();
-    }
+    }   
 }
 void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos,int maxAlunos){
     printf("Operacao = %d\n",*operacao);
@@ -98,7 +102,7 @@ void verificarOperacao(int *operacao,struct alunos t[],int *numeroDeAlunos,int m
         case 1:
             printf("\n");
             printf("--Cadastras Alunos--\n");
-            cadastrarAluno(t,numeroDeAlunos,maxAlunos);              
+            cadastrarAluno(t,numeroDeAlunos,diponivelPlace(numeroDeAlunos,maxAlunos));              
             break;
         case 2:
             printf("\n");
